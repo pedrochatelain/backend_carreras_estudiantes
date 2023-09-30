@@ -9,7 +9,12 @@ public class CarreraDTO {
 
     private String nombre;
 
-    public CarreraDTO() {}
+    @SuppressWarnings("unused")
+    public CarreraDTO() {
+        // debe existir el constructor vacío para poder
+        // devolver CarreraDTO como ResponseEntity
+        // en CarreraController
+    }
 
     public CarreraDTO(String nombre) {
         this.nombre = nombre;
