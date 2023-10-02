@@ -43,4 +43,9 @@ public class EstudianteService {
         return estudianteRepository.getEstudiantePorLU(lu);
     }
 
+    @Transactional
+    public List<EstudianteDTO> getEstudiantes(String carrera, String ciudad) {
+        return estudianteRepository.getEstudiantes(carrera, ciudad);
+    }
+
 }
