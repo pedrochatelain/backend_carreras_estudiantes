@@ -18,4 +18,11 @@ public interface EstudianteRepository extends JpaRepository<Estudiante, Long> {
     """)
     List<EstudianteDTO> getEstudiantePorGenero(String genero);
 
+    @Query("""
+        SELECT new exa.arqweb.tp3.dto.EstudianteDTO(e.libreta_universitaria, e.nombre, e.apellido, e.edad, e.dni, e.ciudad_residencia, e.genero)
+        FROM Estudiante e
+        WHERE e.libreta_universitaria = :lu
+    """)
+    List<EstudianteDTO> getEstudiantePorLU(int lu);
+
 }

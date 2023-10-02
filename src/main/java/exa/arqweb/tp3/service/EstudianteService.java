@@ -38,4 +38,9 @@ public class EstudianteService {
         return estudianteRepository.getEstudiantePorGenero(genero);
     }
 
+    @Transactional
+    public List<EstudianteDTO> getEstudiantePorLU(int lu) {
+        return estudianteRepository.getEstudiantePorLU(lu);
+    }
+
 }
