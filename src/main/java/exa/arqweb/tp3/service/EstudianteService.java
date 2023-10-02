@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import exa.arqweb.tp3.repository.EstudianteRepository;
 
+import java.util.List;
+
 @Service
 public class EstudianteService {
 
@@ -29,6 +31,11 @@ public class EstudianteService {
             estudianteDTO.getCiudad_residencia()
         );
         return estudianteRepository.save(estudiante);
+    }
+
+    @Transactional
+    public List<EstudianteDTO> getEstudiantePorGenero(String genero) {
+        return estudianteRepository.getEstudiantePorGenero(genero);
     }
 
 }
