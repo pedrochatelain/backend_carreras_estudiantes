@@ -1,0 +1,55 @@
+- Corroborar con un ayudante los endpoints de cada ejercicio:
+
+2a) | POST | api/estudiantes | { 'nombre': "Pepe", 'edad': 34, ... } -> (RegistrarUsuarioDTO)
+_______________________________________________________________________________
+
+2b) | POST | api/carreras/{id_carrera}/estudiantes | { 'nombre': "Pepe", ... }
+2b) | POST | api/estudiantes/{id_estudiante}/carreras | {'carrera': "TUDAI, ... }
+2b) | POST | api/inscripciones | { 'id_carrera': 23, 'id_estudiante': 8 }
+2b) | POST | api/inscripciones | { 'nombre': "Pepe", ... , 'carrera': "TUDAI" ... }
+_______________________________________________________________________________
+
+2c) | GET | api/estudiantes?sort=edad
+2c) | GET | api/estudiantes?sort=nombre
+2c) | GET | api/estudiantes?sort=ciudad
+
+Habría que elegir cuál de estos implementar
+_______________________________________________________________________________
+
+2d) | GET | api/estudiantes?lu=204045459
+
+lu: libreta universitaria
+_______________________________________________________________________________
+
+2e) | GET | api/estudiantes?genero=masculino
+_______________________________________________________________________________
+
+2f) | GET | api/carreras?filter=tiene-inscriptos&sort=cantidad-inscriptos
+2f) | GET | api/carreras?con-inscriptos&sort=cantidad-inscriptos
+
+¿deberíamos traer SOLAMENTE las carreras que tienen inscriptos? ¿o hay
+que traer todas las carreras incluso aunque no tengan inscriptos?
+
+Si hay que traer TODAS las carreras, ¿podría usar la siguiente URI? --> api/carreras?sort=cantidad-inscriptos
+
+¿sería mejor un método POST con un body que indique
+lo que queremos traer? ej: { 'tiene_inscriptos': true, 'sort': "inscriptos" }
+
+¿estaría bien la siguiente URI?
+
+    | GET | api/carreras-con-inscriptos?sort=cantidad-inscriptos
+_______________________________________________________________________________
+
+2g) | POST | api/estudiantes/search | { 'carrera': "TUDAI", 'ciudad': "Tandil" }
+2g) | POST | api/estudiantes/search | { 'id_carrera: 4, 'ciudad': "Tandil" }
+2g) | GET | api/estudiantes?carrera=TUDAI&ciudad=Tandil
+2g) | GET | api/estudiantes?id_carrera=4&ciudad=Tandil
+_______________________________________________________________________________
+
+2h) | GET | api/carreras/reporte
+
+¿está bien esta URI? ¿debería agregar query params?
+
+ejemplo: api/carreras/reporte?sort=nombre-carrera,anio
+
+o puedo directamente devolver el reporte ordenado por nombre de la carrera y año?
