@@ -26,18 +26,12 @@ _______________________________________________________________________________
 
 2f) | GET | api/carreras?filter=tiene-inscriptos&sort=cantidad-inscriptos
 2f) | GET | api/carreras?con-inscriptos&sort=cantidad-inscriptos
+2f) | GET | api/inscripciones/carreras?sort=cantidad-inscriptos
 
 ¿deberíamos traer SOLAMENTE las carreras que tienen inscriptos? ¿o hay
 que traer todas las carreras incluso aunque no tengan inscriptos?
 
 Si hay que traer TODAS las carreras, ¿podría usar la siguiente URI? --> api/carreras?sort=cantidad-inscriptos
-
-¿sería mejor un método POST con un body que indique
-lo que queremos traer? ej: { 'tiene_inscriptos': true, 'sort': "inscriptos" }
-
-¿estaría bien la siguiente URI?
-
-    | GET | api/carreras-con-inscriptos?sort=cantidad-inscriptos
 _______________________________________________________________________________
 
 2g) | POST | api/estudiantes/search | { 'carrera': "TUDAI", 'ciudad': "Tandil" }
