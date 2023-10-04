@@ -11,7 +11,22 @@ import java.util.List;
 @Repository
 public interface CarreraRepository extends JpaRepository<Carrera, Long> {
 
-    @Query(name = "get_reporte_carreras", nativeQuery = true)
+    @Query(value = """
+        SELECT nombre AS carrera, anio_graduacion AS anio, MAX(cant_inscriptos) AS inscriptos, MAX(cant_graduados) AS egresados
+        FROM (
+             SELECT c.nombre, anio_graduacion, COUNT(anio_graduacion) AS cant_graduados, 0 AS cant_inscriptos
+             FROM carrera c LEFT JOIN inscripcion i ON i.id_carrera = c.id
+             WHERE anio_graduacion IS NOT NULL
+             GROUP BY c.id, anio_graduacion
+             UNION (
+                 SELECT c.nombre, anio_inscripcion, 0, COUNT(anio_inscripcion) AS cant_inscriptos
+                 FROM carrera c LEFT JOIN inscripcion i ON i.id_carrera = c.id
+                 GROUP BY c.id, anio_inscripcion
+             )
+        ) graduados_inscriptos
+        GROUP BY nombre, anio
+        ORDER BY nombre, anio
+    """, nativeQuery = true)
     List<ReporteCarreraDTO> getReporte();
 
 }
