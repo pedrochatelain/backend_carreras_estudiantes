@@ -1,5 +1,6 @@
 package exa.arqweb.tp3.repository;
 
+import exa.arqweb.tp3.dto.CarrerasConInscriptosDTO;
 import exa.arqweb.tp3.dto.ReporteCarreraDTO;
 import exa.arqweb.tp3.model.Carrera;
 import org.springframework.data.jpa.repository.Query;
@@ -28,5 +29,13 @@ public interface CarreraRepository extends JpaRepository<Carrera, Long> {
         ORDER BY nombre, anio
     """, nativeQuery = true)
     List<ReporteCarreraDTO> getReporte();
+
+    @Query("""
+        SELECT new exa.arqweb.tp3.dto.CarrerasConInscriptosDTO(c.nombre, COUNT(i.anio_inscripcion))
+        FROM Carrera c LEFT JOIN Inscripcion i ON c.id = i.carrera.id
+        GROUP BY c.id
+        ORDER BY COUNT(i.anio_inscripcion)
+    """)
+    List<CarrerasConInscriptosDTO> getCarrerasConInscriptos();
 
 }

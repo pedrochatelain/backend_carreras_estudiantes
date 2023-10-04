@@ -1,6 +1,7 @@
 package exa.arqweb.tp3.controller;
 
 import exa.arqweb.tp3.dto.CarreraDTO;
+import exa.arqweb.tp3.dto.CarrerasConInscriptosDTO;
 import exa.arqweb.tp3.dto.ReporteCarreraDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -39,6 +40,15 @@ public class CarreraController {
     public ResponseEntity<List<ReporteCarreraDTO>> getReporte() {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(carreraService.getReporte());
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }
+    }
+
+    @GetMapping(params = {"sort"})
+    public ResponseEntity<List<CarrerasConInscriptosDTO>> getCarreras(String sort) {
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(carreraService.getCarreras(sort));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         }

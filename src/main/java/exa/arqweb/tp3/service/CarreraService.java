@@ -1,6 +1,7 @@
 package exa.arqweb.tp3.service;
 
 import exa.arqweb.tp3.dto.CarreraDTO;
+import exa.arqweb.tp3.dto.CarrerasConInscriptosDTO;
 import exa.arqweb.tp3.dto.ReporteCarreraDTO;
 import exa.arqweb.tp3.model.Carrera;
 import exa.arqweb.tp3.repository.CarreraRepository;
@@ -30,6 +31,13 @@ public class CarreraService {
     @Transactional
     public List<ReporteCarreraDTO> getReporte() {
         return carreraRepository.getReporte();
+    }
+
+    @Transactional
+    public List<CarrerasConInscriptosDTO> getCarreras(String sortValue) {
+        if (sortValue.equals("cantidad-inscriptos"))
+            return carreraRepository.getCarrerasConInscriptos();
+        return null;
     }
 
 }
