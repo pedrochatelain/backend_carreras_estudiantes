@@ -16,21 +16,11 @@ public class Carrera {
     @Column
     private String nombre;
 
-//    @OneToMany(mappedBy = "carrera")
-//    private List<Inscripcion> inscripciones;
-
-    public Carrera() {
-//        this.inscripciones = new LinkedList<>();
-    }
+    public Carrera() {}
 
     public Carrera(String nombre) {
         this.nombre = nombre;
-//        this.inscripciones = new LinkedList<>();
     }
-
-//    public void addInscripcion(Inscripcion i) {
-//        this.inscripciones.add(i);
-//    }
 
     @Override
     public String toString() {

@@ -4,9 +4,6 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.ToString;
 
-import java.util.List;
-import java.util.LinkedList;
-
 @Getter
 @ToString
 @Entity
@@ -33,9 +30,6 @@ public class Estudiante {
     @Column
     private String ciudad_residencia;
 
-//    @OneToMany(mappedBy = "estudiante")
-//    private List<Inscripcion> inscripciones;
-
     public Estudiante() {}
 
     public Estudiante(int libreta_universitaria, String nombre, String apellido, int edad, String genero, int dni, String ciudad_residencia) {
@@ -46,7 +40,6 @@ public class Estudiante {
         this.genero = genero;
         this.dni = dni;
         this.ciudad_residencia = ciudad_residencia;
-//        this.inscripciones = new LinkedList<Inscripcion>();
     }
 
 }
