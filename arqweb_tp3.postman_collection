@@ -1,0 +1,244 @@
+{
+	"info": {
+		"_postman_id": "25013264-6973-4af6-9c68-2f967da803f7",
+		"name": "arqweb_tp3_api_collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "9549401",
+		"_collection_link": "https://dark-star-644492.postman.co/workspace/My-Workspace~362149f9-cd1f-49bd-856a-ea8acc3dcbdc/collection/9549401-25013264-6973-4af6-9c68-2f967da803f7?action=share&source=collection_link&creator=9549401"
+	},
+	"item": [
+		{
+			"name": "a) dar de alta un estudiante",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"libreta_universitaria\": 23434,\r\n    \"nombre\": \"Pedro\",\r\n    \"apellido\": \"Chatelain\",\r\n    \"edad\": 26,\r\n    \"dni\": 343434343,\r\n    \"ciudad_residencia\": \"Tandil\",\r\n    \"genero\": \"Masculino\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/estudiantes",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"estudiantes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "b) matricular un estudiante en una carrera",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id_carrera\": 152,\r\n    \"id_estudiante\": 3,\r\n    \"anio_inscripcion\": 2023\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/inscripciones",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"inscripciones"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "c) Obtener estudiantes ordenados por \"apellido\"",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/estudiantes?sort=apellido",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"estudiantes"
+					],
+					"query": [
+						{
+							"key": "sort",
+							"value": "apellido"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "d) Obtener estudiantes por libreta universitaria",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/estudiantes?libreta_universitaria=4",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"estudiantes"
+					],
+					"query": [
+						{
+							"key": "libreta_universitaria",
+							"value": "4"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "e) Obtener estudiantes por género",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/estudiantes?genero=female",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"estudiantes"
+					],
+					"query": [
+						{
+							"key": "genero",
+							"value": "female"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "f) Obtener carreras y cantidad de inscriptos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/carreras?sort=cantidad-inscriptos",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"carreras"
+					],
+					"query": [
+						{
+							"key": "sort",
+							"value": "cantidad-inscriptos"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "g) Obtener estudiantes por carrera y ciudad",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/estudiantes?carrera=TUDAI&ciudad=tandil",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"estudiantes"
+					],
+					"query": [
+						{
+							"key": "carrera",
+							"value": "TUDAI"
+						},
+						{
+							"key": "ciudad",
+							"value": "tandil"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "h) Obtener reporte de carreras",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/carreras/reporte",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"carreras",
+						"reporte"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear carrera",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Ingeniería en Sistemas\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/carreras",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"carreras"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
