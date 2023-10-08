@@ -20,7 +20,7 @@ public class EstudianteService {
     }
 
     @Transactional
-    public Estudiante matricularEstudiante(EstudianteDTO estudianteDTO) {
+    public Estudiante guardarEstudiante(EstudianteDTO estudianteDTO) {
         Estudiante estudiante = new Estudiante(
             estudianteDTO.getLibreta_universitaria(),
             estudianteDTO.getNombre(),

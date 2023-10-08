@@ -8,7 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import exa.arqweb.tp3.service.EstudianteService;
 
-import java.net.http.HttpResponse;
 import java.util.List;
 
 @RestController
@@ -28,10 +27,10 @@ public class EstudianteController {
     }
 
     @PostMapping("")
-    public ResponseEntity<Estudiante> matricularEstudiante(@RequestBody EstudianteDTO estudianteDTO) {
+    public ResponseEntity<Estudiante> guardarEstudiante(@RequestBody EstudianteDTO estudianteDTO) {
             System.out.println(estudianteDTO);
         try {
-            return ResponseEntity.status(HttpStatus.CREATED).body(estudianteService.matricularEstudiante(estudianteDTO));
+            return ResponseEntity.status(HttpStatus.CREATED).body(estudianteService.guardarEstudiante(estudianteDTO));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         }
