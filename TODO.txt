@@ -1,2 +1,3 @@
 - agregar comentarios indicando los ejercicios resueltos
 - agregar postman collection
+- c) recuperar todos los estudiantes, y especificar algún criterio de ordenamiento simple.
