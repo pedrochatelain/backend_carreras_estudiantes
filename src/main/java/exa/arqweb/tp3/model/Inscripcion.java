@@ -1,9 +1,12 @@
 package exa.arqweb.tp3.model;
 
 import jakarta.persistence.*;
+import lombok.*;
+
 import java.io.Serializable;
 
 @Entity
+@ToString
 @Table(name = "inscripcion")
 public class Inscripcion {
 
@@ -44,16 +47,13 @@ public class Inscripcion {
     }
 
     @Embeddable
-    private class InscripcionKey implements Serializable {
+    @AllArgsConstructor
+    @NoArgsConstructor
+    private static class InscripcionKey implements Serializable {
         @Column(name = "id_estudiante")
         private int idEstudiante;
         @Column(name = "id_carrera")
         private int idCarrera;
-        public InscripcionKey() {}
-        public InscripcionKey(int idEstudiante, int idCarrera) {
-            this.idEstudiante = idEstudiante;
-            this.idCarrera = idCarrera;
-        }
     }
 
 }
