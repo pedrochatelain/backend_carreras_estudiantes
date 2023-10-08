@@ -48,4 +48,11 @@ public class EstudianteService {
         return estudianteRepository.getEstudiantes(carrera, ciudad);
     }
 
+    @Transactional
+    public List<EstudianteDTO> getEstudiantes(String sort) throws Exception {
+        if (sort.equals("apellido"))
+            return estudianteRepository.getEstudiantesOrderByApellido();
+        throw new Exception();
+    }
+
 }
