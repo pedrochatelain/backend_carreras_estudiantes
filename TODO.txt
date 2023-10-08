@@ -1,3 +1,2 @@
-Endpoints a implementar:
-
-2b)  POST  api/inscripciones  { 'id_carrera': 23, 'id_estudiante': 8 }
+- agregar comentarios indicando los ejercicios resueltos
+- agregar postman collection
