@@ -3,6 +3,8 @@ package exa.arqweb.tp3.controller;
 import exa.arqweb.tp3.dto.CarreraDTO;
 import exa.arqweb.tp3.dto.CarrerasConInscriptosDTO;
 import exa.arqweb.tp3.dto.ReporteCarreraDTO;
+import exa.arqweb.tp3.dto.ResponseDTO;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,12 +30,8 @@ public class CarreraController {
     }
 
     @PostMapping("")
-    public ResponseEntity<CarreraDTO> saveCarrera(@RequestBody CarreraDTO carreraDTO) {
-        try {
-            return ResponseEntity.status(HttpStatus.CREATED).body(carreraService.save(carreraDTO));
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
-        }
+    public ResponseEntity saveCarrera(@RequestBody @Valid CarreraDTO carreraDTO) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(carreraService.save(carreraDTO));
     }
 
     @GetMapping(path = "reporte")

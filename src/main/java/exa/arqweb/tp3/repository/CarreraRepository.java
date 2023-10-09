@@ -38,4 +38,11 @@ public interface CarreraRepository extends JpaRepository<Carrera, Long> {
     """)
     List<CarrerasConInscriptosDTO> getCarrerasConInscriptos();
 
+    @Query("""
+        SELECT c
+        FROM Carrera c
+        WHERE c.nombre = :nombre
+    """)
+    Carrera getCarrera(String nombre);
+
 }

@@ -3,9 +3,12 @@ package exa.arqweb.tp3.service;
 import exa.arqweb.tp3.dto.CarreraDTO;
 import exa.arqweb.tp3.dto.CarrerasConInscriptosDTO;
 import exa.arqweb.tp3.dto.ReporteCarreraDTO;
+import exa.arqweb.tp3.dto.ResponseDTO;
+import exa.arqweb.tp3.exception.CarreraAlreadyExists;
 import exa.arqweb.tp3.model.Carrera;
 import exa.arqweb.tp3.repository.CarreraRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,10 +25,16 @@ public class CarreraService {
     }
 
     @Transactional
-    public CarreraDTO save(CarreraDTO carreraDTO) {
-        Carrera carrera = new Carrera(carreraDTO.getNombre());
-        Carrera carreraCreada = carreraRepository.save(carrera);
-        return new CarreraDTO(carreraCreada.getNombre());
+    public ResponseDTO save(CarreraDTO carreraDTO) {
+        String nombre = carreraDTO.getNombre();
+        if (existeCarrera(nombre))
+            throw new CarreraAlreadyExists(HttpStatus.CONFLICT.value(), "Error: Ya existe una carrera con el nombre '" + carreraDTO.getNombre() + "'");
+        Carrera carreraCreada = carreraRepository.save(new Carrera(nombre));
+        return new ResponseDTO(HttpStatus.CREATED.value(), "Se ha creado correctamente la carrera", carreraCreada);
+    }
+
+    private boolean existeCarrera(String nombre) {
+        return carreraRepository.getCarrera(nombre) != null;
     }
 
     @Transactional

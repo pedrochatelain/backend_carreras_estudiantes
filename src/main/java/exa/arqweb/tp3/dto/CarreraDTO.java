@@ -1,5 +1,6 @@
 package exa.arqweb.tp3.dto;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -7,6 +8,7 @@ import lombok.Setter;
 @Setter
 public class CarreraDTO {
 
+    @NotNull
     private String nombre;
 
     @SuppressWarnings("unused")
