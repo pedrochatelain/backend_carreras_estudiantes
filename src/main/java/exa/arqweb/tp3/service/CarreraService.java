@@ -28,7 +28,7 @@ public class CarreraService {
     public ResponseDTO save(CarreraDTO carreraDTO) {
         String nombre = carreraDTO.getNombre();
         if (existeCarrera(nombre))
-            throw new CarreraAlreadyExists(HttpStatus.CONFLICT.value(), "Error: Ya existe una carrera con el nombre '" + carreraDTO.getNombre() + "'");
+            throw new CarreraAlreadyExists(carreraDTO.getNombre());
         Carrera carreraCreada = carreraRepository.save(new Carrera(nombre));
         return new ResponseDTO(HttpStatus.CREATED.value(), "Se ha creado correctamente la carrera", carreraCreada);
     }

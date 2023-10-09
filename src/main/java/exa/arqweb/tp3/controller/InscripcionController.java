@@ -1,7 +1,6 @@
 package exa.arqweb.tp3.controller;
 
 import exa.arqweb.tp3.dto.InscripcionRequestDTO;
-import exa.arqweb.tp3.dto.InscripcionResponseDTO;
 import exa.arqweb.tp3.service.InscripcionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,12 +22,8 @@ public class InscripcionController {
     }
 
     @PostMapping("")
-    public ResponseEntity<InscripcionResponseDTO> inscribirEstudiante(@RequestBody InscripcionRequestDTO req) {
-        try {
-            return ResponseEntity.status(HttpStatus.CREATED).body(inscripcionService.inscribirEstudiante(req));
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
-        }
+    public ResponseEntity inscribirEstudiante(@RequestBody InscripcionRequestDTO req) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(inscripcionService.inscribirEstudiante(req));
     }
 
 }

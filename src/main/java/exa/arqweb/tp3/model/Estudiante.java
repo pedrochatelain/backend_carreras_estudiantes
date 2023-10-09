@@ -4,9 +4,9 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.ToString;
 
+@Entity
 @Getter
 @ToString
-@Entity
 public class Estudiante {
 
     @Id

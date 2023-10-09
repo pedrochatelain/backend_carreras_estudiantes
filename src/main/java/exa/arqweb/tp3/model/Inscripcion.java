@@ -6,8 +6,9 @@ import lombok.*;
 import java.io.Serializable;
 
 @Entity
-@ToString
 @Table(name = "inscripcion")
+@Getter
+@ToString
 public class Inscripcion {
 
     @EmbeddedId
