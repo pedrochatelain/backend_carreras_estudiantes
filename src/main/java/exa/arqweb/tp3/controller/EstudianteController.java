@@ -28,7 +28,6 @@ public class EstudianteController {
 
     @PostMapping("")
     public ResponseEntity<Estudiante> guardarEstudiante(@RequestBody EstudianteDTO estudianteDTO) {
-            System.out.println(estudianteDTO);
         try {
             return ResponseEntity.status(HttpStatus.CREATED).body(estudianteService.guardarEstudiante(estudianteDTO));
         } catch (Exception e) {
@@ -47,7 +46,6 @@ public class EstudianteController {
 
     @GetMapping(params = {"libreta_universitaria"})
     public ResponseEntity<List<EstudianteDTO>> getEstudiantesPorLU(int libreta_universitaria) {
-        System.out.println(libreta_universitaria);
         try {
             return ResponseEntity.status(HttpStatus.OK).body(estudianteService.getEstudiantePorLU(libreta_universitaria));
         } catch (Exception e) {

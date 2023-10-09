@@ -32,7 +32,6 @@ public class InscripcionService {
         Carrera carrera = carreraRepository.getReferenceById((long) req.getId_carrera());
         Inscripcion inscripcion = new Inscripcion(estudiante, carrera, req.getAnio_inscripcion());
         inscripcionRepository.save(inscripcion);
-        System.out.println(inscripcion);
         return new InscripcionResponseDTO(req.getId_estudiante(), req.getId_carrera(), 201, "Se matriculó correctamente al estudiante");
     }
 
