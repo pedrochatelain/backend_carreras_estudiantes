@@ -47,6 +47,8 @@ public class EstudianteService {
 
     @Transactional
     public List<EstudianteDTO> getEstudiantePorLU(int lu) {
+        if ( ! estudianteRepository.existsById((long) lu))
+            throw new CustomException(HttpStatus.NOT_FOUND.value(), "El estudiante con lu `" + lu + "` no existe");
         return estudianteRepository.getEstudiantePorLU(lu);
     }
 
