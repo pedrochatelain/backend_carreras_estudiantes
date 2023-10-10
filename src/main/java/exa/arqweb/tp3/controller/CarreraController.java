@@ -24,11 +24,6 @@ public class CarreraController {
         this.carreraService = carreraService;
     }
 
-    @GetMapping
-    public String test() {
-        return "carreras controller works!";
-    }
-
     @PostMapping("")
     public ResponseEntity saveCarrera(@RequestBody @Valid CarreraDTO carreraDTO) {
         return ResponseEntity.status(HttpStatus.CREATED).body(carreraService.save(carreraDTO));

@@ -21,11 +21,6 @@ public class EstudianteController {
         this.estudianteService = estudianteService;
     }
 
-    @GetMapping
-    public String test() {
-        return "estudiante controller works!";
-    }
-
     @PostMapping("")
     public ResponseEntity guardarEstudiante(@RequestBody @Valid EstudianteDTO estudianteDTO) {
         return ResponseEntity.status(HttpStatus.CREATED).body(estudianteService.guardarEstudiante(estudianteDTO));
