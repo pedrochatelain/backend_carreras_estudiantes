@@ -27,12 +27,8 @@ public class EstudianteController {
     }
 
     @GetMapping(params = {"genero"})
-    public ResponseEntity<List<EstudianteDTO>> getEstudiantesPorGenero(String genero) {
-        try {
+    public ResponseEntity getEstudiantesPorGenero(String genero) {
             return ResponseEntity.status(HttpStatus.OK).body(estudianteService.getEstudiantePorGenero(genero));
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
-        }
     }
 
     @GetMapping(params = {"libreta_universitaria"})

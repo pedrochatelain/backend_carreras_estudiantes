@@ -42,7 +42,13 @@ public class EstudianteService {
 
     @Transactional
     public List<EstudianteDTO> getEstudiantePorGenero(String genero) {
-        return estudianteRepository.getEstudiantePorGenero(genero);
+        genero = genero.trim();
+        if (genero.isBlank())
+            throw new CustomException(HttpStatus.BAD_REQUEST.value(), "Debe especificar un género");
+        List<EstudianteDTO> estudiantes = estudianteRepository.getEstudiantePorGenero(genero);
+        if (estudiantes.isEmpty())
+            throw new CustomException(HttpStatus.NOT_FOUND.value(), "El género `" + genero + "` no existe o no ha sido encontrado");
+        return estudiantes;
     }
 
     @Transactional
