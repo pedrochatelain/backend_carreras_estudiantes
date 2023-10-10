@@ -4,7 +4,6 @@ import exa.arqweb.tp3.dto.CarreraDTO;
 import exa.arqweb.tp3.dto.CarrerasConInscriptosDTO;
 import exa.arqweb.tp3.dto.ReporteCarreraDTO;
 import exa.arqweb.tp3.dto.ResponseDTO;
-import exa.arqweb.tp3.exception.CarreraAlreadyExists;
 import exa.arqweb.tp3.exception.CustomException;
 import exa.arqweb.tp3.model.Carrera;
 import exa.arqweb.tp3.repository.CarreraRepository;
@@ -29,7 +28,7 @@ public class CarreraService {
     public ResponseDTO save(CarreraDTO carreraDTO) {
         String nombre = carreraDTO.getNombre();
         if (existeCarrera(nombre))
-            throw new CarreraAlreadyExists(carreraDTO.getNombre());
+            throw new CustomException(HttpStatus.CONFLICT.value(), "Ya existe la carrera con el nombre: " + nombre);
         Carrera carreraCreada = carreraRepository.save(new Carrera(nombre));
         return new ResponseDTO(HttpStatus.CREATED.value(), "Se ha creado correctamente la carrera", carreraCreada);
     }
