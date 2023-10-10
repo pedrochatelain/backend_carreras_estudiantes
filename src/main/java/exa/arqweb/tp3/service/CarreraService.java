@@ -5,6 +5,7 @@ import exa.arqweb.tp3.dto.CarrerasConInscriptosDTO;
 import exa.arqweb.tp3.dto.ReporteCarreraDTO;
 import exa.arqweb.tp3.dto.ResponseDTO;
 import exa.arqweb.tp3.exception.CarreraAlreadyExists;
+import exa.arqweb.tp3.exception.CustomException;
 import exa.arqweb.tp3.model.Carrera;
 import exa.arqweb.tp3.repository.CarreraRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,9 +45,13 @@ public class CarreraService {
 
     @Transactional
     public List<CarrerasConInscriptosDTO> getCarreras(String sortValue) {
-        if (sortValue.equals("cantidad-inscriptos"))
-            return carreraRepository.getCarrerasConInscriptos();
-        return null;
+        if (sortValue.isBlank())
+            throw new CustomException(HttpStatus.BAD_REQUEST.value(), "Debe especificar el ordenamiento: sort=cantidad-inscriptos");
+        sortValue = sortValue.trim();
+        if ( ! sortValue.equals("cantidad-inscriptos"))
+            throw new CustomException(HttpStatus.BAD_REQUEST.value(), "ERROR: El atributo de ordenamiento `" + sortValue + "` no existe. Solo se puede ordenar por `cantidad-inscriptos`");
+
+        return carreraRepository.getCarrerasConInscriptos();
     }
 
 }

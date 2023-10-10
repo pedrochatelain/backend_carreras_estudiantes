@@ -39,12 +39,8 @@ public class CarreraController {
     }
 
     @GetMapping(params = {"sort"})
-    public ResponseEntity<List<CarrerasConInscriptosDTO>> getCarreras(String sort) {
-        try {
-            return ResponseEntity.status(HttpStatus.OK).body(carreraService.getCarreras(sort));
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
-        }
+    public ResponseEntity getCarreras(String sort) {
+        return ResponseEntity.status(HttpStatus.OK).body(carreraService.getCarreras(sort));
     }
 
 }
