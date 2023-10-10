@@ -8,8 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import exa.arqweb.tp3.service.EstudianteService;
 
-import java.util.List;
-
 @RestController
 @RequestMapping(path = "api/estudiantes")
 public class EstudianteController {
