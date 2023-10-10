@@ -4,7 +4,6 @@ import exa.arqweb.tp3.dto.InscripcionDTO;
 import exa.arqweb.tp3.dto.InscripcionRequestDTO;
 import exa.arqweb.tp3.dto.ResponseDTO;
 import exa.arqweb.tp3.exception.CustomException;
-import exa.arqweb.tp3.exception.EstudianteNotFound;
 import exa.arqweb.tp3.exception.InscripcionAlreadyExists;
 import exa.arqweb.tp3.model.Carrera;
 import exa.arqweb.tp3.model.Estudiante;
@@ -44,7 +43,7 @@ public class InscripcionService {
     // Corrobora que exista el estudiante, la carrera y que la inscripción no haya sido realizada anteriormente
     private void checkRequest(InscripcionRequestDTO req) {
         if ( ! estudianteRepository.existsById((long) req.getId_estudiante()) )
-            throw new EstudianteNotFound(req.getId_estudiante());
+            throw new CustomException(HttpStatus.NOT_FOUND.value(), "No existe el estudiante con id: " + req.getId_estudiante());
         if ( ! carreraRepository.existsById((long) req.getId_carrera()) )
             throw new CustomException(HttpStatus.NOT_FOUND.value(), "No existe la carrera con id: " + req.getId_carrera());
         if ( inscripcionRepository.getInscripcion(req.getId_estudiante(), req.getId_carrera()) != null)
