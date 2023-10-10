@@ -2,6 +2,7 @@ package exa.arqweb.tp3.controller;
 
 import exa.arqweb.tp3.dto.InscripcionRequestDTO;
 import exa.arqweb.tp3.service.InscripcionService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +23,7 @@ public class InscripcionController {
     }
 
     @PostMapping("")
-    public ResponseEntity inscribirEstudiante(@RequestBody InscripcionRequestDTO req) {
+    public ResponseEntity inscribirEstudiante(@RequestBody @Valid InscripcionRequestDTO req) {
         return ResponseEntity.status(HttpStatus.CREATED).body(inscripcionService.inscribirEstudiante(req));
     }
 
