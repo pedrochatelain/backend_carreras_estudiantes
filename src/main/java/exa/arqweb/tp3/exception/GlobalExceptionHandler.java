@@ -8,6 +8,13 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
+    @ExceptionHandler({CustomException.class})
+    public ResponseEntity<Object> handleException(CustomException exception) {
+        return ResponseEntity
+                .status(exception.getStatus_code())
+                .body(new ResponseDTO(exception.getStatus_code(), exception.getMessage(), null));
+    }
+
     @ExceptionHandler({CarreraAlreadyExists.class})
     public ResponseEntity<Object> handleCarreraAlreadyExistsException(CarreraAlreadyExists exception) {
         return ResponseEntity

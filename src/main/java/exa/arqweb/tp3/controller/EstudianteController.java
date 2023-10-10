@@ -54,12 +54,8 @@ public class EstudianteController {
     }
 
     @GetMapping(params = {"sort"})
-    public ResponseEntity<List<EstudianteDTO>> getEstudiantes(String sort) {
-        try {
-            return ResponseEntity.status(HttpStatus.OK).body(estudianteService.getEstudiantes(sort));
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
-        }
+    public ResponseEntity getEstudiantes(String sort) {
+        return ResponseEntity.status(HttpStatus.OK).body(estudianteService.getEstudiantes(sort));
     }
 
 }

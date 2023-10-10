@@ -2,6 +2,7 @@ package exa.arqweb.tp3.service;
 
 import exa.arqweb.tp3.dto.EstudianteDTO;
 import exa.arqweb.tp3.dto.ResponseDTO;
+import exa.arqweb.tp3.exception.CustomException;
 import exa.arqweb.tp3.exception.EstudianteAlreadyExists;
 import exa.arqweb.tp3.model.Estudiante;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,10 +56,11 @@ public class EstudianteService {
     }
 
     @Transactional
-    public List<EstudianteDTO> getEstudiantes(String sort) throws Exception {
-        if (sort.equals("apellido"))
+    public List<EstudianteDTO> getEstudiantes(String sort) {
+        String sortValue = sort.trim();
+        if (sortValue.equals("apellido"))
             return estudianteRepository.getEstudiantesOrderByApellido();
-        throw new Exception();
+        throw new CustomException(HttpStatus.BAD_REQUEST.value(), "ERROR: El atributo de ordenamiento `" + sortValue + "` no existe. Solo se puede ordenar por `apellido`");
     }
 
 }
