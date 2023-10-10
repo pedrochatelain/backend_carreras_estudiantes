@@ -1,7 +1,7 @@
 package exa.arqweb.tp3.controller;
 
 import exa.arqweb.tp3.dto.EstudianteDTO;
-import exa.arqweb.tp3.model.Estudiante;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,12 +27,8 @@ public class EstudianteController {
     }
 
     @PostMapping("")
-    public ResponseEntity<Estudiante> guardarEstudiante(@RequestBody EstudianteDTO estudianteDTO) {
-        try {
-            return ResponseEntity.status(HttpStatus.CREATED).body(estudianteService.guardarEstudiante(estudianteDTO));
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
-        }
+    public ResponseEntity guardarEstudiante(@RequestBody @Valid EstudianteDTO estudianteDTO) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(estudianteService.guardarEstudiante(estudianteDTO));
     }
 
     @GetMapping(params = {"genero"})
