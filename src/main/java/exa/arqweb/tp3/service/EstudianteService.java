@@ -1,9 +1,11 @@
 package exa.arqweb.tp3.service;
 
 import exa.arqweb.tp3.dto.EstudianteDTO;
+import exa.arqweb.tp3.dto.ResponseDTO;
 import exa.arqweb.tp3.exception.EstudianteAlreadyExists;
 import exa.arqweb.tp3.model.Estudiante;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import exa.arqweb.tp3.repository.EstudianteRepository;
@@ -21,7 +23,7 @@ public class EstudianteService {
     }
 
     @Transactional
-    public Estudiante guardarEstudiante(EstudianteDTO estudianteDTO) {
+    public ResponseDTO guardarEstudiante(EstudianteDTO estudianteDTO) {
         if (estudianteRepository.existsById((long) estudianteDTO.getLibreta_universitaria()))
             throw new EstudianteAlreadyExists(estudianteDTO.getLibreta_universitaria());
 
@@ -34,7 +36,7 @@ public class EstudianteService {
             estudianteDTO.getDni(),
             estudianteDTO.getCiudad_residencia()
         );
-        return estudianteRepository.save(estudiante);
+        return new ResponseDTO(HttpStatus.CREATED.value(), "Se creó correctamente el estudiante", estudianteRepository.save(estudiante));
     }
 
     @Transactional
