@@ -37,12 +37,8 @@ public class EstudianteController {
     }
 
     @GetMapping(params = {"carrera", "ciudad"})
-    public ResponseEntity<List<EstudianteDTO>> getEstudiantes(String carrera, String ciudad) {
-        try {
-            return ResponseEntity.status(HttpStatus.OK).body(estudianteService.getEstudiantes(carrera, ciudad));
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
-        }
+    public ResponseEntity<?> getEstudiantesPorCarreraYCiudad(String carrera, String ciudad) {
+        return ResponseEntity.status(HttpStatus.OK).body(estudianteService.getEstudiantesPorCarreraYCiudad(carrera, ciudad));
     }
 
     @GetMapping(params = {"sort"})

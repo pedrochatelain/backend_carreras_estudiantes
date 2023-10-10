@@ -59,8 +59,12 @@ public class EstudianteService {
     }
 
     @Transactional
-    public List<EstudianteDTO> getEstudiantes(String carrera, String ciudad) {
-        return estudianteRepository.getEstudiantes(carrera, ciudad);
+    public List<EstudianteDTO> getEstudiantesPorCarreraYCiudad(String carrera, String ciudad) {
+        if (carrera.isEmpty() || ciudad.isEmpty() || carrera.isBlank() || ciudad.isBlank())
+            throw new CustomException(HttpStatus.BAD_REQUEST.value(), "Debe especificar obligtoriamente carrera y ciudad. Por ejemplo ciudad=tandil&carrera=TUDAI");
+        carrera = carrera.trim();
+        ciudad = ciudad.trim();
+        return estudianteRepository.getEstudiantesPorCarreraYCiudad(carrera, ciudad);
     }
 
     @Transactional
