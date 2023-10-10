@@ -15,13 +15,6 @@ public class GlobalExceptionHandler {
                 .body(new ResponseDTO(exception.getStatus_code(), exception.getMessage(), null));
     }
 
-    @ExceptionHandler({EstudianteAlreadyExists.class})
-    public ResponseEntity<Object> handleEstudianteAlreadyExistsException(EstudianteAlreadyExists exception) {
-        return ResponseEntity
-                .status(exception.getStatus_code())
-                .body(new ResponseDTO(exception.getStatus_code(), exception.getMessage(), null));
-    }
-
     @ExceptionHandler({InscripcionAlreadyExists.class})
     public ResponseEntity<Object> handleInscripcionAlreadyExistsException(InscripcionAlreadyExists exception) {
         return ResponseEntity
