@@ -4,3 +4,5 @@
 - En la ruta del proyecto se adjunta el archivo ``carrera_estudiante_local.postman_collection``
 para probar los servicios.
 
+
+- La base de datos se almacena en https://aiven.io/platform
