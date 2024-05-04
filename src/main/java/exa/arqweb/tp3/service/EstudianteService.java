@@ -23,19 +23,16 @@ public class EstudianteService {
     }
 
     @Transactional
-    public ResponseDTO guardarEstudiante(EstudianteDTO estudianteDTO) {
-        if (estudianteRepository.existsById((long) estudianteDTO.getLibreta_universitaria()))
-            throw new CustomException(HttpStatus.CONFLICT.value(), "Ya existe el estudiante con id: " + estudianteDTO.getLibreta_universitaria());
+    public ResponseDTO guardarEstudiante(EstudianteDTO dto) {
+        Estudiante estudiante = new Estudiante();
 
-        Estudiante estudiante = new Estudiante(
-            estudianteDTO.getLibreta_universitaria(),
-            estudianteDTO.getNombre(),
-            estudianteDTO.getApellido(),
-            estudianteDTO.getEdad(),
-            estudianteDTO.getGenero(),
-            estudianteDTO.getDni(),
-            estudianteDTO.getCiudad_residencia()
-        );
+        estudiante.setNombre(dto.getNombre());
+        estudiante.setApellido(dto.getApellido());
+        estudiante.setEdad(dto.getEdad());
+        estudiante.setGenero(dto.getGenero());
+        estudiante.setDni(dto.getDni());
+        estudiante.setCiudad_residencia(dto.getCiudad_residencia());
+
         return new ResponseDTO(HttpStatus.CREATED.value(), "Se creó correctamente el estudiante", estudianteRepository.save(estudiante));
     }
 
