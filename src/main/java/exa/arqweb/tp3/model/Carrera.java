@@ -9,7 +9,7 @@ import lombok.Setter;
 @Entity
 public class Carrera {
 
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
     private int id;
 

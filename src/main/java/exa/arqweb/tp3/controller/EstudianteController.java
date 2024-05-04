@@ -20,7 +20,7 @@ public class EstudianteController {
     }
 
     @PostMapping("")
-    public ResponseEntity guardarEstudiante(@RequestBody @Valid EstudianteDTO estudianteDTO) {
+    public ResponseEntity guardarEstudiante(@RequestBody EstudianteDTO estudianteDTO) {
         return ResponseEntity.status(HttpStatus.CREATED).body(estudianteService.guardarEstudiante(estudianteDTO));
     }
 

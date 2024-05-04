@@ -2,13 +2,16 @@ package exa.arqweb.tp3.model;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 
 @Entity
 @Getter
+@Setter
 @ToString
 public class Estudiante {
 
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
     private int libreta_universitaria;
 
