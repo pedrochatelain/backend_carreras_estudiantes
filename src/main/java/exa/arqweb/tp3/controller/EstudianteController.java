@@ -44,4 +44,9 @@ public class EstudianteController {
         return ResponseEntity.status(HttpStatus.OK).body(estudianteService.getEstudiantes(sort));
     }
 
+    @GetMapping
+    public ResponseEntity getEstudiantes() {
+        return ResponseEntity.status(HttpStatus.OK).body(estudianteService.getEstudiantes());
+    }
+
 }

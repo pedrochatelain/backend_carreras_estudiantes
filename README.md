@@ -12,3 +12,6 @@
 
 - En la ruta del proyecto se adjunta el archivo ``carrera_estudiante_local.postman_collection``
 para probar los servicios
+
+
+- Para probar el codigo localmente es necesario montar una base de datos y descomentar la linea ``spring.profiles.active=local`` en el archivo ``application.properties`` 

@@ -71,4 +71,7 @@ public class EstudianteService {
         throw new CustomException(HttpStatus.BAD_REQUEST.value(), "ERROR: El atributo de ordenamiento `" + sortValue + "` no existe. Solo se puede ordenar por `apellido`");
     }
 
+    public List<Estudiante> getEstudiantes() {
+        return estudianteRepository.findAll();
+    }
 }
