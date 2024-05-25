@@ -9,12 +9,14 @@ import lombok.ToString;
 @ToString
 public class CarrerasConInscriptosDTO {
 
+    private int id;
     private String carrera;
     private int inscriptos;
 
-    public CarrerasConInscriptosDTO(String carrera, Long inscriptos) {
+    public CarrerasConInscriptosDTO(int id, String carrera, Long inscriptos) {
         this.carrera = carrera;
         this.inscriptos = inscriptos.intValue();
+        this.id = id;
     }
 
 }

@@ -31,7 +31,7 @@ public interface CarreraRepository extends JpaRepository<Carrera, Long> {
     List<ReporteCarreraDTO> getReporte();
 
     @Query("""
-        SELECT new exa.arqweb.tp3.dto.CarrerasConInscriptosDTO(c.nombre, COUNT(i.anio_inscripcion))
+        SELECT new exa.arqweb.tp3.dto.CarrerasConInscriptosDTO(c.id, c.nombre, COUNT(i.anio_inscripcion))
         FROM Carrera c LEFT JOIN Inscripcion i ON c.id = i.carrera.id
         GROUP BY c.id
         ORDER BY COUNT(i.anio_inscripcion)
