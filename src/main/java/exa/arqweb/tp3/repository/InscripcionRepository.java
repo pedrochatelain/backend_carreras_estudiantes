@@ -25,4 +25,12 @@ public interface InscripcionRepository extends JpaRepository<Inscripcion, Long> 
         WHERE i.carrera.id = :idCarrera
     """)
     void deleteByCarreraId(long idCarrera);
-}
+
+    @Modifying
+    @Transactional
+    @Query("""
+        DELETE
+        FROM Inscripcion i
+        WHERE i.estudiante.libreta_universitaria = :idEstudiante
+    """)
+    void deleteByEstudianteId(long idEstudiante);}

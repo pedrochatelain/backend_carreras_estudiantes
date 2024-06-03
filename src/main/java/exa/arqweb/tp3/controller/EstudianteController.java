@@ -1,6 +1,7 @@
 package exa.arqweb.tp3.controller;
 
 import exa.arqweb.tp3.dto.EstudianteDTO;
+import exa.arqweb.tp3.dto.ResponseDTO;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -47,6 +48,12 @@ public class EstudianteController {
     @GetMapping
     public ResponseEntity getEstudiantes() {
         return ResponseEntity.status(HttpStatus.OK).body(estudianteService.getEstudiantes());
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseDTO deleteEstudiante(@PathVariable("id") long id) {
+        estudianteService.deleteEstudiante(id);
+        return new ResponseDTO(HttpStatus.OK.value(), "Se borró el estudiante " + id + " correctamente");
     }
 
 }

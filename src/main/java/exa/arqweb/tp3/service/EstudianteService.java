@@ -4,6 +4,7 @@ import exa.arqweb.tp3.dto.EstudianteDTO;
 import exa.arqweb.tp3.dto.ResponseDTO;
 import exa.arqweb.tp3.exception.CustomException;
 import exa.arqweb.tp3.model.Estudiante;
+import exa.arqweb.tp3.repository.InscripcionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -16,10 +17,12 @@ import java.util.List;
 public class EstudianteService {
 
     private final EstudianteRepository estudianteRepository;
+    private final InscripcionRepository inscripcionRepository;
 
     @Autowired
-    public EstudianteService(EstudianteRepository estudianteRepository) {
+    public EstudianteService(EstudianteRepository estudianteRepository, InscripcionRepository inscripcionRepository) {
         this.estudianteRepository = estudianteRepository;
+        this.inscripcionRepository = inscripcionRepository;
     }
 
     @Transactional
@@ -73,5 +76,10 @@ public class EstudianteService {
 
     public List<Estudiante> getEstudiantes() {
         return estudianteRepository.findAll();
+    }
+
+    public void deleteEstudiante(long id) {
+        inscripcionRepository.deleteByEstudianteId(id);
+        estudianteRepository.deleteById(id);
     }
 }
