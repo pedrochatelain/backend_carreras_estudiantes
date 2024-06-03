@@ -7,8 +7,10 @@ import exa.arqweb.tp3.dto.ResponseDTO;
 import exa.arqweb.tp3.exception.CustomException;
 import exa.arqweb.tp3.model.Carrera;
 import exa.arqweb.tp3.repository.CarreraRepository;
+import exa.arqweb.tp3.repository.InscripcionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,10 +20,12 @@ import java.util.List;
 public class CarreraService {
 
     private final CarreraRepository carreraRepository;
+    private final InscripcionRepository inscripcionRepository;
 
     @Autowired
-    public CarreraService(CarreraRepository carreraRepository) {
+    public CarreraService(CarreraRepository carreraRepository, InscripcionRepository inscripcionRepository) {
         this.carreraRepository = carreraRepository;
+        this.inscripcionRepository = inscripcionRepository;
     }
 
     @Transactional
@@ -53,4 +57,8 @@ public class CarreraService {
         return carreraRepository.getCarrerasConInscriptos();
     }
 
+    public void deleteCarrera(long id) {
+        inscripcionRepository.deleteByCarreraId(id);
+        carreraRepository.deleteById(id);
+    }
 }

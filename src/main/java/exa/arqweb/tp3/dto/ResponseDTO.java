@@ -13,4 +13,8 @@ public class ResponseDTO {
     private String message;
     private Object entity;
 
+    public ResponseDTO(int status_code, String message) {
+        this.status_code = status_code;
+        this.message = message;
+    }
 }

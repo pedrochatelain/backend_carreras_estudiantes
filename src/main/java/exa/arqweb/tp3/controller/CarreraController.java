@@ -43,4 +43,10 @@ public class CarreraController {
         return ResponseEntity.status(HttpStatus.OK).body(carreraService.getCarreras(sort));
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseDTO deleteCarrera(@PathVariable("id") long id) {
+        carreraService.deleteCarrera(id);
+        return new ResponseDTO(HttpStatus.OK.value(), "Se borró la carrera " + id + " correctamente");
+    }
+
 }
