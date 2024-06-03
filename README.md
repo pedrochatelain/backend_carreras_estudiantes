@@ -10,8 +10,7 @@
 - Si se realizan cambios en el código, ejecutar ``./mvnw clean install -DskipTests`` antes de subirlo al repositorio, y comprobar el estado de la linea ``spring.profiles.active=local`` en el archivo ``application.properties`` 
 
 
-- En la ruta del proyecto se adjunta el archivo ``carrera_estudiante_local.postman_collection``
-para probar los servicios
+- En la ruta del proyecto se adjuntan los archivos ``LOCAL_carreras_estudiantes.postman_collection.json`` y ``PRODUCTION_carreras_estudiantes_render.postman_collection.json`` para probar los servicios localmente o utilizando la base de datos de producción
 
 
 - Para probar el codigo localmente es necesario montar una base de datos y descomentar la linea ``spring.profiles.active=local`` en el archivo ``application.properties`` 
