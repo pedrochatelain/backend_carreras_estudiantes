@@ -78,8 +78,12 @@ public class EstudianteService {
         return estudianteRepository.findAll();
     }
 
-    public void deleteEstudiante(long id) {
-        inscripcionRepository.deleteByEstudianteId(id);
-        estudianteRepository.deleteById(id);
+    public ResponseDTO deleteEstudiante(long id) {
+        if (estudianteRepository.existsById(id)) {
+            inscripcionRepository.deleteByEstudianteId(id);
+            estudianteRepository.deleteById(id);
+            return new ResponseDTO(HttpStatus.OK.value(), "Se borró el estudiante correctamente");
+        }
+        return new ResponseDTO(HttpStatus.NOT_FOUND.value(), "El estudiante con libreta universitaria: " + id + " no existe");
     }
 }

@@ -51,9 +51,9 @@ public class EstudianteController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseDTO deleteEstudiante(@PathVariable("id") long id) {
-        estudianteService.deleteEstudiante(id);
-        return new ResponseDTO(HttpStatus.OK.value(), "Se borró el estudiante " + id + " correctamente");
+    public ResponseEntity<ResponseDTO> deleteEstudiante(@PathVariable("id") long id) {
+        ResponseDTO response = estudianteService.deleteEstudiante(id);
+        return ResponseEntity.status(response.getStatus_code()).body(response);
     }
 
 }
