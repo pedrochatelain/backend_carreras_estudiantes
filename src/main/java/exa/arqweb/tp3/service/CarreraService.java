@@ -37,7 +37,7 @@ public class CarreraService {
         return new ResponseDTO(HttpStatus.CREATED.value(), "Se ha creado correctamente la carrera", carreraCreada);
     }
 
-    private boolean existeCarrera(String nombre) {
+    public boolean existeCarrera(String nombre) {
         return carreraRepository.getCarrera(nombre) != null;
     }
 
