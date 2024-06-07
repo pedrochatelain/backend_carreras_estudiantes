@@ -1,8 +1,7 @@
 HELP.md
-#target/
+target/
 !.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
+!**/src/main/**/target/tp3-0.0.1-SNAPSHOT.jar
 
 ### STS ###
 .apt_generated
