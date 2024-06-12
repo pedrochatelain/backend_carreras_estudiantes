@@ -1,9 +1,9 @@
 package exa.arqweb.tp3.dto;
 
-import exa.arqweb.tp3.model.Estudiante;
-import jakarta.validation.constraints.NotNull;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.Setter;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -16,6 +16,8 @@ public class EstudianteDTO {
     private int dni;
     private String ciudad_residencia;
     private String genero;
+    @JsonFormat(pattern = "dd-MM-yyyy")
+    private LocalDate fecha_nacimiento;
 
     public EstudianteDTO() {}
 
@@ -41,6 +43,12 @@ public class EstudianteDTO {
     public EstudianteDTO(String nombre, int edad) {
         this.nombre = nombre;
         this.edad = edad;
+    }
+
+    public EstudianteDTO(String nombre, String apellido, LocalDate fecha_nacimiento) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.fecha_nacimiento = fecha_nacimiento;
     }
 
 }

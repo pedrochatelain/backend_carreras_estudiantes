@@ -35,6 +35,7 @@ public class EstudianteService {
         estudiante.setGenero(dto.getGenero());
         estudiante.setDni(dto.getDni());
         estudiante.setCiudad_residencia(dto.getCiudad_residencia());
+        estudiante.setFecha_nacimiento(dto.getFecha_nacimiento());
 
         return new ResponseDTO(HttpStatus.CREATED.value(), "Se creó correctamente el estudiante", estudianteRepository.save(estudiante));
     }

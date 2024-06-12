@@ -1,9 +1,11 @@
 package exa.arqweb.tp3.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import java.time.LocalDate;
 
 @Entity
 @Getter
@@ -33,9 +35,13 @@ public class Estudiante {
     @Column
     private String ciudad_residencia;
 
+    @Column
+    @JsonFormat(pattern = "dd-MM-yyyy")
+    private LocalDate fecha_nacimiento;
+
     public Estudiante() {}
 
-    public Estudiante(int libreta_universitaria, String nombre, String apellido, int edad, String genero, int dni, String ciudad_residencia) {
+    public Estudiante(int libreta_universitaria, String nombre, String apellido, int edad, String genero, int dni, String ciudad_residencia, LocalDate fecha_nacimiento) {
         this.libreta_universitaria = libreta_universitaria;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -43,6 +49,7 @@ public class Estudiante {
         this.genero = genero;
         this.dni = dni;
         this.ciudad_residencia = ciudad_residencia;
+        this.fecha_nacimiento = fecha_nacimiento;
     }
 
 }
