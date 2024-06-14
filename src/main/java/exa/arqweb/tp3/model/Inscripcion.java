@@ -50,6 +50,7 @@ public class Inscripcion {
     @Embeddable
     @AllArgsConstructor
     @NoArgsConstructor
+    @EqualsAndHashCode
     private static class InscripcionKey implements Serializable {
         @Column(name = "id_estudiante")
         private int idEstudiante;
