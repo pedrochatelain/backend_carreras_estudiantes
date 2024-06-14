@@ -23,7 +23,29 @@
 - Desactivar la linea ``spring.profiles.active=local`` en el archivo ``application.properties`` (o sea, dejarla comentada con el simbolo # al principio de la linea)
 
 
-- Luego ejecutar el comando ``./mvnw clean install -DskipTests`` (no olvidar el punto al principio)
+- Luego ejecutar el comando
+
+  ``./mvnw clean install -DskipTests``
+
+  (no olvidar el punto al principio)
+
+## Correr aplicación localmente
+
+Si se quiere utilizar la applicación, es necesario apuntar a una base de datos local.
+
+  Para ello hay que descomentar la linea ``spring.profiles.active=local`` en el archivo ``application.properties``, haciendo que de esta manera se apunte a una base de datos embebida (*H2 Database Engine*).
+
+Una vez hecho esto, es posible correr la aplicación.
+
+### GUI para interactuar con H2 Database Engine
+Es posible acceder a la base de datos local desde un navegador web http://localhost:8080/h2-console (configurando el login como se muestra en la siguiente imagen)
+
+![configuracion h2](src/main/resources/configuracion_database_h2.png)
 
 
-Para probar el codigo localmente es necesario montar una base de datos y descomentar la linea ``spring.profiles.active=local`` en el archivo ``application.properties``
+## TO DO
+
+- Allow attributes "edad", "dni", "fecha_nacimiento" to be null in database
+- Allow multiple constructors to create student
+- Store "edad" when saving student (calculate it from birthdate)  
+- Display custom error responses when DateTimeParseException occurs
