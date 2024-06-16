@@ -1,6 +1,5 @@
 package exa.arqweb.tp3.dto;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.Setter;
 import java.time.LocalDate;
@@ -16,7 +15,6 @@ public class EstudianteDTO {
     private int dni;
     private String ciudad_residencia;
     private String genero;
-    @JsonFormat(pattern = "dd-MM-yyyy")
     private LocalDate fecha_nacimiento;
 
     public EstudianteDTO() {}

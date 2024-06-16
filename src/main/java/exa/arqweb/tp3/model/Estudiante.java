@@ -1,6 +1,5 @@
 package exa.arqweb.tp3.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -36,7 +35,6 @@ public class Estudiante {
     private String ciudad_residencia;
 
     @Column
-    @JsonFormat(pattern = "dd-MM-yyyy")
     private LocalDate fecha_nacimiento;
 
     public Estudiante() {}

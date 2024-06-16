@@ -21,7 +21,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<?> handleException(DateTimeParseException e) {
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
-                .body(new ResponseDateTimeParseException(e.getLocalizedMessage(), "Las fechas deben cumplir con el formato dd-MM-yyyy. Por ejemplo, 5 de julio del año 1997 debe representarse así 05-07-1997"));
+                .body(new ResponseDateTimeParseException(e.getLocalizedMessage(), "Las fechas deben cumplir con el formato yyyy-MM-dd. Por ejemplo, 5 de julio del año 1997 debe representarse así 1997-07-05"));
     }
 
 }
