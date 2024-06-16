@@ -2,7 +2,13 @@ package exa.arqweb.tp3.controller;
 
 import exa.arqweb.tp3.dto.EstudianteDTO;
 import exa.arqweb.tp3.dto.ResponseDTO;
-import jakarta.validation.Valid;
+import exa.arqweb.tp3.model.Estudiante;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import exa.arqweb.tp3.service.EstudianteService;
 
 @RestController
-@RequestMapping(path = "api/estudiantes")
+@Tag(name = "Estudiantes")
 public class EstudianteController {
 
     private final EstudianteService estudianteService;
@@ -40,13 +46,12 @@ public class EstudianteController {
         return ResponseEntity.status(HttpStatus.OK).body(estudianteService.getEstudiantesPorCarreraYCiudad(carrera, ciudad));
     }
 
-    @GetMapping(params = {"sort"})
-    public ResponseEntity getEstudiantes(String sort) {
-        return ResponseEntity.status(HttpStatus.OK).body(estudianteService.getEstudiantes(sort));
-    }
-
-    @GetMapping
-    public ResponseEntity getEstudiantes() {
+    @GetMapping(value = "api/estudiantes", produces = "application/json")
+    @Operation(summary = "Retorna todos los estudiantes")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", content = { @Content(schema = @Schema(implementation = Estudiante.class)) }),
+    })
+    public ResponseEntity<?> getEstudiantes() {
         return ResponseEntity.status(HttpStatus.OK).body(estudianteService.getEstudiantes());
     }
 
