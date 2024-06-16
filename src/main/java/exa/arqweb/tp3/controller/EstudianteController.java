@@ -26,7 +26,7 @@ public class EstudianteController {
         this.estudianteService = estudianteService;
     }
 
-    @PostMapping("")
+    @PostMapping(value = "api/estudiantes", produces = "application/json")
     public ResponseEntity guardarEstudiante(@RequestBody EstudianteDTO estudianteDTO) {
         return ResponseEntity.status(HttpStatus.CREATED).body(estudianteService.guardarEstudiante(estudianteDTO));
     }
@@ -55,7 +55,7 @@ public class EstudianteController {
         return ResponseEntity.status(HttpStatus.OK).body(estudianteService.getEstudiantes());
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping(value = "api/estudiantes/{id}", produces = "application/json")
     public ResponseEntity<ResponseDTO> deleteEstudiante(@PathVariable("id") long id) {
         ResponseDTO response = estudianteService.deleteEstudiante(id);
         return ResponseEntity.status(response.getStatus_code()).body(response);
