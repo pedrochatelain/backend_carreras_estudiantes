@@ -6,12 +6,16 @@ import exa.arqweb.tp3.exception.CustomException;
 import exa.arqweb.tp3.model.Estudiante;
 import exa.arqweb.tp3.repository.InscripcionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import exa.arqweb.tp3.repository.EstudianteRepository;
 
 import java.util.List;
+import java.util.Map;
+
+import static exa.arqweb.tp3.model.SpecificationEstudiante.*;
 
 @Service
 public class EstudianteService {
@@ -67,12 +71,29 @@ public class EstudianteService {
         return estudianteRepository.getEstudiantesPorCarreraYCiudad(carrera, ciudad);
     }
 
-    @Transactional
-    public List<EstudianteDTO> getEstudiantes(String sort) {
-        String sortValue = sort.trim();
-        if (sortValue.equals("apellido"))
-            return estudianteRepository.getEstudiantesOrderByApellido();
-        throw new CustomException(HttpStatus.BAD_REQUEST.value(), "ERROR: El atributo de ordenamiento `" + sortValue + "` no existe. Solo se puede ordenar por `apellido`");
+//    @Transactional
+//    public List<EstudianteDTO> getEstudiantes(String sort) {
+//        String sortValue = sort.trim();
+//        if (sortValue.equals("apellido"))
+//            return estudianteRepository.getEstudiantesOrderByApellido();
+//        throw new CustomException(HttpStatus.BAD_REQUEST.value(), "ERROR: El atributo de ordenamiento `" + sortValue + "` no existe. Solo se puede ordenar por `apellido`");
+//    }
+
+    public List<EstudianteDTO> getEstudiantes(Map<String,String> allRequestParams) {
+        Specification<EstudianteDTO> specification = Specification.where(null);
+        String ciudad = allRequestParams.get("ciudad");
+        String genero = allRequestParams.get("genero");
+        String anio_inscripcion = allRequestParams.get("anio_inscripcion");
+        if (ciudad != null) {
+            specification = specification.and(hasCiudadResidencia(ciudad));
+        }
+        if (genero != null) {
+            specification = specification.and(hasGenero(genero));
+        }
+        if (anio_inscripcion != null) {
+            specification = specification.and(hasAnioInscripcion(anio_inscripcion));
+        }
+        return estudianteRepository.findAll(specification);
     }
 
     public List<Estudiante> getEstudiantes() {

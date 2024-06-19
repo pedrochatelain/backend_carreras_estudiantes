@@ -4,6 +4,7 @@ import exa.arqweb.tp3.dto.EstudianteDTO;
 import exa.arqweb.tp3.dto.ResponseDTO;
 import exa.arqweb.tp3.model.Estudiante;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -14,6 +15,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import exa.arqweb.tp3.service.EstudianteService;
+
+import java.util.Map;
 
 @RestController
 @Tag(name = "Estudiantes")
@@ -49,10 +52,10 @@ public class EstudianteController {
     @GetMapping(value = "api/estudiantes", produces = "application/json")
     @Operation(summary = "Retorna todos los estudiantes")
     @ApiResponses({
-            @ApiResponse(responseCode = "200", content = { @Content(schema = @Schema(implementation = Estudiante.class)) }),
+            @ApiResponse(responseCode = "200", content = { @Content(array = @ArraySchema(schema = @Schema(implementation = Estudiante.class))) }),
     })
-    public ResponseEntity<?> getEstudiantes() {
-        return ResponseEntity.status(HttpStatus.OK).body(estudianteService.getEstudiantes());
+    public ResponseEntity<?> getEstudiantes(@RequestParam Map<String,String> allRequestParams) {
+        return ResponseEntity.status(HttpStatus.OK).body(estudianteService.getEstudiantes(allRequestParams));
     }
 
     @DeleteMapping(value = "api/estudiantes/{id}", produces = "application/json")
