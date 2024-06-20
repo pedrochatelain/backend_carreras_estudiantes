@@ -16,7 +16,12 @@ public class SpecificationEstudiante {
                 builder.equal(root.get("ciudad_residencia"), ciudad);
     }
 
-    public static Specification<EstudianteDTO> hasAnioInscripcion(String anio_inscripcion) {
+    public static Specification<EstudianteDTO> hasNombre(String nombre) {
+        return (root, query, builder) ->
+                builder.equal(root.get("nombre"), nombre);
+    }
+
+    public static Specification<EstudianteDTO> hasAnioInscripcion(Integer anio_inscripcion) {
         return (root, query, builder) -> {
             var rootInscripcion = query.from(Inscripcion.class);
             Predicate anioInscripcion = builder.equal(rootInscripcion.get("anio_inscripcion"), anio_inscripcion);
