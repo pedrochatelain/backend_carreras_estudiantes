@@ -27,6 +27,9 @@ public class EstudianteController {
         this.estudianteService = estudianteService;
     }
 
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", content = { @Content(schema = @Schema(implementation = ResponseDTO.class)) }),
+    })
     @PostMapping(value = "api/estudiantes", produces = "application/json")
     public ResponseEntity guardarEstudiante(@RequestBody EstudianteDTO estudianteDTO) {
         return ResponseEntity.status(HttpStatus.CREATED).body(estudianteService.guardarEstudiante(estudianteDTO));
