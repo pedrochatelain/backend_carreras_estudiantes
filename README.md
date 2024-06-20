@@ -10,12 +10,12 @@
 
 ## Correr aplicación localmente
 
-Si se quiere utilizar la applicación, es necesario descomentar la linea ``spring.profiles.active=local`` que se encuentra en el archivo ``application.properties`` (*src/main/resources/application.properties*)
+Si se quiere utilizar la applicación, es necesario descomentar la linea **spring.profiles.active=local** que se encuentra en el archivo **application.properties**
 
 De esta manera se habilita una base de datos embebida *H2 Database Engine*, permitiendo correr la app de diferentes maneras:
 
 ### Opción 1
-Abrir el proyecto con un IDE y ejecutar el método **main** en la ruta *src/main/java/exa/arqweb/tp3/Main.java*
+Abrir el proyecto con un IDE y ejecutar el método **main** (src/main/java/exa/arqweb/tp3/Main.java)
 
 
 ### Opción 2
@@ -62,7 +62,7 @@ La aplicación cuenta con algunos tests, que se pueden ejecutar a través de lin
 
 ⚠️ Si se van a realizar cambios en el código, tener en cuenta los dos siguientes puntos antes de subir las modificaciones al repositorio remoto (GitHub)
 
-- Desactivar la linea ``spring.profiles.active=local`` en el archivo ``application.properties`` (o sea, dejarla comentada con el simbolo # al principio de la linea)
+- Desactivar la linea **spring.profiles.active=local** en el archivo **application.properties** (o sea, dejarla comentada con el simbolo # al principio de la linea)
 
 
 - Luego ejecutar el comando
