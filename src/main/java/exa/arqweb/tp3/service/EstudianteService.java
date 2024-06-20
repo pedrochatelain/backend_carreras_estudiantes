@@ -31,12 +31,12 @@ public class EstudianteService {
     public ResponseDTO guardarEstudiante(EstudianteDTO dto) {
         Estudiante estudiante = new Estudiante();
 
-        estudiante.setNombre(dto.getNombre());
-        estudiante.setApellido(dto.getApellido());
+        estudiante.setNombre(dto.getNombre().toLowerCase());
+        estudiante.setApellido(dto.getApellido().toLowerCase());
         estudiante.setEdad(dto.getEdad());
-        estudiante.setGenero(dto.getGenero());
+        estudiante.setGenero(dto.getGenero().toLowerCase());
         estudiante.setDni(dto.getDni());
-        estudiante.setCiudad_residencia(dto.getCiudad_residencia());
+        estudiante.setCiudad_residencia(dto.getCiudad_residencia().toLowerCase());
         estudiante.setFecha_nacimiento(dto.getFecha_nacimiento());
 
         return new ResponseDTO(HttpStatus.CREATED.value(), "Se creó correctamente el estudiante", estudianteRepository.save(estudiante));
@@ -45,16 +45,16 @@ public class EstudianteService {
     public List<EstudianteDTO> getEstudiantes(String genero, String nombre, Integer anio_inscripcion, String ciudad) {
         Specification<EstudianteDTO> specification = Specification.where(null);
         if (ciudad != null) {
-            specification = specification.and(hasCiudadResidencia(ciudad));
+            specification = specification.and(hasCiudadResidencia(ciudad.toLowerCase()));
         }
         if (genero != null) {
-            specification = specification.and(hasGenero(genero));
+            specification = specification.and(hasGenero(genero.toLowerCase()));
         }
         if (anio_inscripcion != null) {
             specification = specification.and(hasAnioInscripcion(anio_inscripcion));
         }
         if (nombre != null) {
-            specification = specification.and(hasNombre(nombre));
+            specification = specification.and(hasNombre(nombre.toLowerCase()));
         }
         return estudianteRepository.findAll(specification);
     }
