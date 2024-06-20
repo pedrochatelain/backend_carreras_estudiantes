@@ -23,19 +23,17 @@ Ejecutar la app a través de un command-line interpreter
 
   - **Windows**: En la ruta del proyecto abrir cmd.exe y ejecutar:
   
-    `
+    ```
      mvnw.cmd spring-boot:run
-    `
+    ```
   
 
   - **Linux / MacOS**: En la ruta del proyecto abrir una terminal y ejecutar:
 
-    `
+    ```
      ./mvnw spring-boot:run
-    `
-  
-    (no olvidar el punto "." al principio del comando)
-
+    ```
+    
 ## Servicios
 Una vez iniciada la app, es posible probar los servicios localmente a través del siguiente link: http://localhost:8080/swagger-ui/index.html
 
@@ -49,16 +47,16 @@ La aplicación cuenta con algunos tests, que se pueden ejecutar a través de lin
 
 - **Windows**: En la ruta del proyecto abrir cmd.exe y ejecutar:
 
-  `
+  ```
   mvnw.cmd test
-  `
+  ```
 
 
 - **Linux / MacOS**: En la ruta del proyecto abrir una terminal y ejecutar:
 
-  `
+  ```
   ./mvnw test
-  `
+  ```
 
 ## A tener en cuenta
 
@@ -72,6 +70,9 @@ La aplicación cuenta con algunos tests, que se pueden ejecutar a través de lin
   ``./mvnw clean install -DskipTests``
 
   (no olvidar el punto al principio)
+  ```
+    ./mvnw clean install -DskipTests
+  ```
 
 ## TO DO
 
