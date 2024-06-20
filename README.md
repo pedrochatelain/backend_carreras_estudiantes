@@ -67,9 +67,6 @@ La aplicación cuenta con algunos tests, que se pueden ejecutar a través de lin
 
 - Luego ejecutar el comando
 
-  ``./mvnw clean install -DskipTests``
-
-  (no olvidar el punto al principio)
   ```
     ./mvnw clean install -DskipTests
   ```
@@ -82,3 +79,4 @@ La aplicación cuenta con algunos tests, que se pueden ejecutar a través de lin
 - Display custom error responses when DateTimeParseException occurs
 - Fix "api/estudiantes?sort=apellido" doesn't fetch "fecha_nacimiento"
 - Check if by doing './mvnw package' a SNAPSHOT.jar gets generated. If so, deploy it to the host server and see if the app still works
+- mention that java_home env var is necessary to run app
