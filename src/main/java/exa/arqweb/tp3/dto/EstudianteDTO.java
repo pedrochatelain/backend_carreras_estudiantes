@@ -50,19 +50,7 @@ public class EstudianteDTO {
         this.fecha_nacimiento = fecha_nacimiento;
     }
 
-    private void lowercaseStringFields() {
-        if (nombre != null)
-            nombre = nombre.toLowerCase();
-        if (apellido != null)
-            apellido = apellido.toLowerCase();
-        if (ciudad_residencia != null)
-            ciudad_residencia = ciudad_residencia.toLowerCase();
-        if (genero != null)
-            genero = genero.toLowerCase();
-    }
-
     public Estudiante toEstudiante() {
-        this.lowercaseStringFields();
         Estudiante est = new Estudiante();
         est.setNombre(nombre);
         est.setApellido(apellido);
