@@ -29,16 +29,7 @@ public class EstudianteService {
 
     @Transactional
     public ResponseDTO guardarEstudiante(EstudianteDTO dto) {
-        Estudiante estudiante = new Estudiante();
-
-        estudiante.setNombre(dto.getNombre().toLowerCase());
-        estudiante.setApellido(dto.getApellido().toLowerCase());
-        estudiante.setEdad(dto.getEdad());
-        estudiante.setGenero(dto.getGenero().toLowerCase());
-        estudiante.setDni(dto.getDni());
-        estudiante.setCiudad_residencia(dto.getCiudad_residencia().toLowerCase());
-        estudiante.setFecha_nacimiento(dto.getFecha_nacimiento());
-
+        Estudiante estudiante = dto.toEstudiante();
         return new ResponseDTO(HttpStatus.CREATED.value(), "Se creó correctamente el estudiante", estudianteRepository.save(estudiante));
     }
 

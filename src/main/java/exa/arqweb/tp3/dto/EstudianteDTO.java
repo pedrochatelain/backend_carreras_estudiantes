@@ -1,5 +1,6 @@
 package exa.arqweb.tp3.dto;
 
+import exa.arqweb.tp3.model.Estudiante;
 import lombok.Getter;
 import lombok.Setter;
 import java.time.LocalDate;
@@ -49,4 +50,27 @@ public class EstudianteDTO {
         this.fecha_nacimiento = fecha_nacimiento;
     }
 
+    private void lowercaseStringFields() {
+        if (nombre != null)
+            nombre = nombre.toLowerCase();
+        if (apellido != null)
+            apellido = apellido.toLowerCase();
+        if (ciudad_residencia != null)
+            ciudad_residencia = ciudad_residencia.toLowerCase();
+        if (genero != null)
+            genero = genero.toLowerCase();
+    }
+
+    public Estudiante toEstudiante() {
+        this.lowercaseStringFields();
+        Estudiante est = new Estudiante();
+        est.setNombre(nombre);
+        est.setApellido(apellido);
+        est.setEdad(edad);
+        est.setGenero(genero);
+        est.setDni(dni);
+        est.setCiudad_residencia(ciudad_residencia);
+        est.setFecha_nacimiento(fecha_nacimiento);
+        return est;
+    }
 }
