@@ -3,6 +3,7 @@ package exa.arqweb.tp3.controller;
 import exa.arqweb.tp3.dto.CarreraDTO;
 import exa.arqweb.tp3.dto.ReporteCarreraDTO;
 import exa.arqweb.tp3.dto.ResponseDTO;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,6 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path = "api/carreras")
+@SecurityRequirement(name = "bearerAuth")
 public class CarreraController {
 
     private final CarreraService carreraService;
@@ -37,9 +39,9 @@ public class CarreraController {
         }
     }
 
-    @GetMapping(params = {"sort"})
-    public ResponseEntity<?> getCarreras(String sort) {
-        return ResponseEntity.status(HttpStatus.OK).body(carreraService.getCarreras(sort));
+    @GetMapping
+    public ResponseEntity<?> getCarreras() {
+        return ResponseEntity.status(HttpStatus.OK).body(carreraService.getCarreras());
     }
 
     @DeleteMapping("/{id}")

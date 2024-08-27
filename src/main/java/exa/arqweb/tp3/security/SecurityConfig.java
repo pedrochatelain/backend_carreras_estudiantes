@@ -85,6 +85,8 @@ public class SecurityConfig {
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers(mvc.pattern(HttpMethod.POST, "/api/estudiantes")).hasRole("ADMIN")
                 .requestMatchers(mvc.pattern(HttpMethod.GET, "/api/estudiantes")).hasAnyRole("ADMIN", "USER")
+                .requestMatchers(mvc.pattern(HttpMethod.POST, "/api/carreras")).hasRole("ADMIN")
+                .requestMatchers(mvc.pattern(HttpMethod.GET, "/api/carreras")).hasAnyRole("ADMIN", "USER")
                 .anyRequest().authenticated()
             )
         ;

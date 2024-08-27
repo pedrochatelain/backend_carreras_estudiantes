@@ -47,14 +47,8 @@ public class CarreraService {
     }
 
     @Transactional
-    public List<CarrerasConInscriptosDTO> getCarreras(String sortValue) {
-        if (sortValue.isBlank())
-            throw new CustomException(HttpStatus.BAD_REQUEST.value(), "Debe especificar el ordenamiento: sort=cantidad-inscriptos");
-        sortValue = sortValue.trim();
-        if ( ! sortValue.equals("cantidad-inscriptos"))
-            throw new CustomException(HttpStatus.BAD_REQUEST.value(), "ERROR: El atributo de ordenamiento `" + sortValue + "` no existe. Solo se puede ordenar por `cantidad-inscriptos`");
-
-        return carreraRepository.getCarrerasConInscriptos();
+    public List<Carrera> getCarreras() {
+        return carreraRepository.findAll();
     }
 
     public void deleteCarrera(long id) {
