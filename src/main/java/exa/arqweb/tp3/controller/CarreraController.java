@@ -1,7 +1,6 @@
 package exa.arqweb.tp3.controller;
 
 import exa.arqweb.tp3.dto.CarreraDTO;
-import exa.arqweb.tp3.dto.CarrerasConInscriptosDTO;
 import exa.arqweb.tp3.dto.ReporteCarreraDTO;
 import exa.arqweb.tp3.dto.ResponseDTO;
 import jakarta.validation.Valid;
@@ -25,7 +24,7 @@ public class CarreraController {
     }
 
     @PostMapping("")
-    public ResponseEntity saveCarrera(@RequestBody @Valid CarreraDTO carreraDTO) {
+    public ResponseEntity<?> saveCarrera(@RequestBody @Valid CarreraDTO carreraDTO) {
         return ResponseEntity.status(HttpStatus.CREATED).body(carreraService.save(carreraDTO));
     }
 
@@ -39,7 +38,7 @@ public class CarreraController {
     }
 
     @GetMapping(params = {"sort"})
-    public ResponseEntity getCarreras(String sort) {
+    public ResponseEntity<?> getCarreras(String sort) {
         return ResponseEntity.status(HttpStatus.OK).body(carreraService.getCarreras(sort));
     }
 
