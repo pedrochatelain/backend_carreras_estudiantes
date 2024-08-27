@@ -1,6 +1,7 @@
 package exa.arqweb.tp3.service;
 
 import exa.arqweb.tp3.dto.EstudianteDTO;
+import exa.arqweb.tp3.dto.RequestEstudiantesDTO;
 import exa.arqweb.tp3.dto.ResponseDTO;
 import exa.arqweb.tp3.model.Estudiante;
 import exa.arqweb.tp3.repository.InscripcionRepository;
@@ -33,7 +34,11 @@ public class EstudianteService {
         return new ResponseDTO(HttpStatus.CREATED.value(), "Se creó correctamente el estudiante", estudianteRepository.save(estudiante));
     }
 
-    public List<EstudianteDTO> getEstudiantes(String genero, String nombre, Integer anio_inscripcion, String ciudad) {
+    public List<EstudianteDTO> getEstudiantes(RequestEstudiantesDTO request) {
+        var ciudad = request.getCiudad();
+        var genero = request.getGenero();
+        var anio_inscripcion = request.getAnio_inscripcion();
+        var nombre = request.getNombre();
         Specification<EstudianteDTO> specification = Specification.where(null);
         if (ciudad != null) {
             specification = specification.and(hasCiudadResidencia(ciudad.toLowerCase()));
